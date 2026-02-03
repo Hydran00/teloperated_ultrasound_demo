@@ -1,7 +1,7 @@
 # teloperated_ultrasound_demo
 
 ### Internet setup
-- Every device has subnet `255.255.255.0 (/24)`  
+- Every device has subnet `255.255.255.0 (/24)` and is connected through a switch. 
 - The leader pc must have ip: `192.168.100.50`  
 - The follower pc must have ip: `172.31.1.148` on ethernet port 1 and `192.168.100.49` on the ethernet port 2  
 - The KUKA robot has ip `172.31.1.147`  
@@ -62,9 +62,18 @@ colcon build --symlink-install
 source entrypoint.sh
 ros2 launch haptic_control haptic_control.launch.py use_fixtures:=true
 ```
-
+Then launch the reconstruction system
+```source entrypoint.sh
+ros2 run smpl_ros zed_fusion_smpl_tracking --ros-args --params-file src/smpl_ros/config/node_params.yaml
+```
 ## Run follower
 Access to zotac02 pc
 ```
 ssh zotac02@192.168.100.49
 ```
+Launch controller
+```
+ros2 launch kuka_control ultrasound.launch.py ctrl:=kuka_clik_controller model:=iiwa14 
+```
+Then launch the ImpedanceControl from the teach pendant pressing the play button.
+
