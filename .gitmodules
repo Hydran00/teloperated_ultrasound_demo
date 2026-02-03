@@ -14,3 +14,6 @@
 [submodule "leader/zed_ws/src/smpl_msgs"]
 	path = leader/zed_ws/src/smpl_msgs
 	url = https://github.com/idra-lab/smpl_msgs
+[submodule "leader/clarius_ws/src/clarius_ros2"]
+	path = leader/clarius_ws/src/clarius_ros2
+	url = git@github.com:idra-lab/clarius_ros2.git
