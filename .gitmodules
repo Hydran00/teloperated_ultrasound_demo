@@ -5,3 +5,12 @@
 	path = leader/kuka_lbr_control
 	url = git@github.com:idra-lab/kuka_lbr_control.git
 	branch = ultrasound
+[submodule "leader/zed_ws/src/smpl_ros"]
+	path = leader/zed_ws/src/smpl_ros
+	url = git@github.com:idra-lab/smpl_ros.git
+[submodule "leader/zed_ws/src/torchure_smplx"]
+	path = leader/zed_ws/src/torchure_smplx
+	url = https://github.com/Hydran00/torchure_smplx
+[submodule "leader/zed_ws/src/smpl_msgs"]
+	path = leader/zed_ws/src/smpl_msgs
+	url = https://github.com/idra-lab/smpl_msgs
