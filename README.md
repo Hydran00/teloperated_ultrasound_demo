@@ -60,7 +60,7 @@ colcon build --symlink-install
 ## Run leader
 ```
 source entrypoint.sh
-ros2 launch haptic_control haptic_control.launch.py
+ros2 launch haptic_control haptic_control.launch.py use_fixtures:=true
 ```
 
 ## Run follower
