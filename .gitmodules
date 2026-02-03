@@ -1,0 +1,7 @@
+[submodule "leader/haptic_interface_ROS2"]
+	path = leader/haptic_interface_ROS2
+	url = git@github.com:idra-lab/haptic_interface_ROS2.git
+[submodule "leader/kuka_lbr_control"]
+	path = leader/kuka_lbr_control
+	url = git@github.com:idra-lab/kuka_lbr_control.git
+	branch = ultrasound
