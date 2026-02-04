@@ -7,7 +7,7 @@
 - The KUKA robot has ip `172.31.1.147`  
 - The haptic interface has ip: `192.168.100.53`  
 
-### Simple Teleoperation
+### Teleoperation setup
 - Clone this repository
 - Init submodules
 ```
@@ -23,6 +23,10 @@ colcon build --symlink-install
 ```
 cd leader/kuka_control
 colcon build --symlink-install
+```
+- Calibrate haptic interface 
+```
+ros2 launch haptic_control auto_calibration.launch.py
 ```
 
 ## Camera reconstruction system
@@ -55,19 +59,40 @@ colcon build --symlink-install --packages-select smpl_ros /
     -DCMAKE_BUILD_TYPE=Release
 colcon build --symlink-install
 ```
-
+## Ultrasound Streaming
+Build `clarius_ws`
+```
+cd clarius_ws/
+colcon build --symlink-install
+```
+Connect to the US probe with the Clarius App and check the IP address and streaming port assigned to the probe. The port should be `5828` by default. Then set the right values in `leader/clarius_ws/launch/us_stream.launch.py` file.
+```
+{"us_image_topic_name": "us_image"},
+{"frame_id": "clarius_probe"},
+{"ip_address": "10.160.50.119"},
+{"port": 5828},
+```
+Enable traffic on the streaming port
+```
+sudo ufw allow <port> # 5828
+```
 
 ## Run leader
+Source every workspace
 ```
 source entrypoint.sh
+```
+Run haptic interface
+```
 ros2 launch haptic_control haptic_control.launch.py use_fixtures:=true
 ```
 Then launch the reconstruction system
 ```source entrypoint.sh
 ros2 run smpl_ros zed_fusion_smpl_tracking --ros-args --params-file src/smpl_ros/config/node_params.yaml
 ```
-## Run follower
-Access to zotac02 pc
+Activate the ultrasound streaming
+```
+ros2 launch clarius_ros2 us_stream.launch.py
 ```
 ssh zotac02@192.168.100.49
 ```
