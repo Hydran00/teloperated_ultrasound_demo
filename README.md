@@ -12,7 +12,7 @@
 - Init submodules
 ```
 git submodule update init
-git submodule update update --recursive # this should download also `lbr-stack` module repository under `kuka_control`
+git submodule update --recursive # this should download also `lbr-stack` module repository under `kuka_control`
 ```
 - Compile haptic interface nodes
 ```
@@ -87,12 +87,15 @@ Run haptic interface
 ros2 launch haptic_control haptic_control.launch.py use_fixtures:=true
 ```
 Then launch the reconstruction system
-```source entrypoint.sh
+```
+source entrypoint.sh
 ros2 run smpl_ros zed_fusion_smpl_tracking --ros-args --params-file src/smpl_ros/config/node_params.yaml
 ```
 Activate the ultrasound streaming
 ```
 ros2 launch clarius_ros2 us_stream.launch.py
+```
+Access the controller-pc
 ```
 ssh zotac02@192.168.100.49
 ```
